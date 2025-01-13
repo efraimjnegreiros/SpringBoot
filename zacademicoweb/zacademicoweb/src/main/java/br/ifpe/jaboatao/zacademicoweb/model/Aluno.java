@@ -6,8 +6,8 @@ public class Aluno extends Usuario{
     private Escola escolaAnterior;
     private ArrayList<NotaSelecao> notasSelecao;
 
-    public Aluno(String nome, String cpf,int idade, String emailPessoal, String emailInstitucional, String senha, String matricula){
-        super(nome, cpf, idade, emailPessoal,emailInstitucional,senha);
+    public Aluno(String nome, String cpf,int idade, String email_pessoal, String emailInstitucional, String senha, String matricula){
+        super(nome, cpf, idade, email_pessoal,emailInstitucional,senha);
         this.matricula = matricula;
     }
 
