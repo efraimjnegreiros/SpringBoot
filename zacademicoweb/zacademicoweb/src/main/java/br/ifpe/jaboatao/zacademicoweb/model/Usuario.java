@@ -4,15 +4,15 @@ public abstract class Usuario {
     private String nome;
     private String cpf;
     private int idade;
-    private String emailPessoal;
+    private String email_pessoal;
     private String emailInstitucional;
     private String senha;
 
-    public Usuario(String nome, String cpf,int idade, String emailPessoal, String emailInstitucional, String senha){
+    public Usuario(String nome, String cpf,int idade, String email_pessoal, String emailInstitucional, String senha){
         this.nome = nome;
         this.cpf = cpf;
         this.idade = idade;
-        this.emailPessoal = emailPessoal;
+        this.email_pessoal = email_pessoal;
         this.emailInstitucional = emailInstitucional;
         this.senha = senha;
     }
@@ -27,11 +27,11 @@ public abstract class Usuario {
     }
 
     public String getEmailPessoal() {
-        return this.emailPessoal;
+        return this.email_pessoal;
     }
 
     public void setEmailPessoal(String emailPessoal) {
-        this.emailPessoal = emailPessoal;
+        this.email_pessoal = emailPessoal;
     }
 
     public String getEmailInstitucional() {
