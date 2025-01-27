@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+</head>
+<body>
+    <h1>Lista de Alunos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Idade</th>
+                <th>Email Pessoal</th>
+                <th>Matrícula</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop sobre a lista de alunos -->
+            <tr th:each="aluno : ${alunos}">
+                <td th:text="${aluno.nome}"></td>
+                <td th:text="${aluno.cpf}"></td>
+                <td th:text="${aluno.idade}"></td>
+                <td th:text="${aluno.emailPessoal}"></td>
+                <td th:text="${aluno.matricula}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/cadAluno">Cadastrar novo Aluno</a>
+</body>
+</html>
