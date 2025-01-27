@@ -1,19 +1,34 @@
 package br.ifpe.jaboatao.zacademicoweb.model.dao;
 
-import org.springframework.jdbc.core.simple.JdbcClient;
+import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import br.ifpe.jaboatao.zacademicoweb.model.Aluno;
-// Indica que a aplicação acessa um banco de dados
+
 @Repository
 public class AlunoDAO {
-    private final JdbcClient jdbcClient;
+    private final JdbcTemplate jdbcTemplate;
 
-    public AlunoDAO(JdbcClient jdbcClient) {
-        this.jdbcClient = jdbcClient;
+    public AlunoDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public int create(Aluno aluno) {
-        return jdbcClient.sql("Insert into aluno (nome, cpf, idade, email_pessoal, senha, matricula) values (:nome, :cpf, :idade, :email_pessoal, :senha, :matricula)").param("nome", aluno.getNome()).param("cpf", aluno.getCpf()).param("idade", aluno.getIdade()).param("email_pessoal", aluno.getEmailPessoal()).param("senha", aluno.getSenha()).param("matricula", aluno.getMatricula()).update();
+        String sql = "INSERT INTO aluno (nome, cpf, idade, email_pessoal, senha, matricula) VALUES (?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(sql, aluno.getNome(), aluno.getCpf(), aluno.getIdade(), aluno.getEmailPessoal(), aluno.getSenha(), aluno.getMatricula());
     }
+
+    public List<Aluno> listAll() {
+        String sql = "SELECT * FROM aluno";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new Aluno(
+            rs.getString("nome"),
+            rs.getString("cpf"),
+            rs.getInt("idade"),
+            rs.getString("email_pessoal"),
+            rs.getString("email_institucional"), // Incluído aqui
+            rs.getString("senha"),
+            rs.getString("matricula")
+        ));
+    }
+    
 }
